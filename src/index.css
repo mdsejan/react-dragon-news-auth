@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a.active {
+  color: #706f6f !important;
+  background-color: #fff !important;
+  font-weight: 700 !important;
+  text-decoration: underline;
+}
+
+li a {
+  color: #706f6f !important;
+  background-color: #fff !important;
+}
