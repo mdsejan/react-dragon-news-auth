@@ -1,10 +1,20 @@
+import { useEffect, useState } from "react";
 import Header from "../shared/Header/Header";
 import LeftSideNav from "../shared/LeftSideNav/LeftSideNav";
 import Navbar from "../shared/Navbar/Navbar";
 import RightSideNav from "../shared/RightSideNav/RightSideNav";
 import BreakingNews from "./BreakingNews";
+import HomeNewsCard from "./HomeNewsCard";
 
 const Home = () => {
+  const [allNews, setAllNews] = useState([]);
+
+  useEffect(() => {
+    fetch("/news.json")
+      .then((res) => res.json())
+      .then((data) => setAllNews(data));
+  }, []);
+
   return (
     <div>
       <Header></Header>
@@ -14,9 +24,15 @@ const Home = () => {
         <div>
           <LeftSideNav></LeftSideNav>
         </div>
-        <div className="lg:col-span-2 border">
-          <h2>News Coming Soon</h2>
-          {/* <div className="min-h-[3800px]"></div> */}
+        <div className="lg:col-span-2">
+          <h1 className="text-xl font-semibold mb-8 text-[#403F3F]">
+            Dragon News Home
+          </h1>
+          <div>
+            {allNews.map((news) => (
+              <HomeNewsCard key={news._id} news={news}></HomeNewsCard>
+            ))}
+          </div>
         </div>
         <div>
           <RightSideNav></RightSideNav>

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import TrendingNewsCard from "./TrendingNewsCard";
 
 const LeftSideNav = () => {
   const [categories, setCategories] = useState([]);
+  const [trendNews, setTrendNews] = useState([]);
 
   useEffect(() => {
     fetch("/categories.json")
@@ -10,7 +12,16 @@ const LeftSideNav = () => {
       .then((data) => setCategories(data));
   }, []);
 
-  console.log(categories);
+  useEffect(() => {
+    fetch("/news.json")
+      .then((res) => res.json())
+      .then((newsdata) => setTrendNews(newsdata));
+  }, []);
+
+  const trendNewsFilter = trendNews.filter(
+    (news) => news.others_info.is_trending === true
+  );
+
   return (
     <div>
       <div>
@@ -25,6 +36,16 @@ const LeftSideNav = () => {
           >
             {category.name}
           </NavLink>
+        ))}
+      </div>
+
+      <div className="mt-20">
+        {trendNewsFilter.slice(0, 3).map((trndNews) => (
+          <TrendingNewsCard
+            key={trndNews._id}
+            trndNews={trndNews}
+            categories={categories}
+          ></TrendingNewsCard>
         ))}
       </div>
     </div>
