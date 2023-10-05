@@ -1,20 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import Header from "../shared/Header/Header";
 import LeftSideNav from "../shared/LeftSideNav/LeftSideNav";
 import Navbar from "../shared/Navbar/Navbar";
 import RightSideNav from "../shared/RightSideNav/RightSideNav";
 import BreakingNews from "./BreakingNews";
 import HomeNewsCard from "./HomeNewsCard";
+import { AuthContext } from "../../providers/AuthContext";
 
 const Home = () => {
-  const [allNews, setAllNews] = useState([]);
-
-  useEffect(() => {
-    fetch("/news.json")
-      .then((res) => res.json())
-      .then((data) => setAllNews(data));
-  }, []);
-
+  const { allNews } = useContext(AuthContext);
   return (
     <div>
       <Header></Header>

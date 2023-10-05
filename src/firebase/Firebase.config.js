@@ -1,17 +1,16 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+
+
 const firebaseConfig = {
-    apiKey: "AIzaSyAectR-KbI0Vi-R7OjhQ53DpuRJUSHA0Zk",
-    authDomain: "react-dragon-news-auth-e710c.firebaseapp.com",
-    projectId: "react-dragon-news-auth-e710c",
-    storageBucket: "react-dragon-news-auth-e710c.appspot.com",
-    messagingSenderId: "557934181288",
-    appId: "1:557934181288:web:01ba730b09adfd54d57b9d"
+    apiKey: import.meta.env.VITE_APIKEY,
+    authDomain: import.meta.env.VITE_AUTHDOMAIN,
+    projectId: import.meta.env.VITE_PROJECTID,
+    storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+    appId: import.meta.env.VITE_APPID
 };
 
 // Initialize Firebase

@@ -9,15 +9,31 @@ import {
 import qZone1 from "../../../assets/qZone1.png";
 import qZone2 from "../../../assets/qZone2.png";
 import qZone3 from "../../../assets/qZone3.png";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthContext";
 
 const RightSideNav = () => {
+  const { googleSignIn } = useContext(AuthContext);
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <div>
       <div>
         <h1 className="text-xl font-semibold mb-8 text-[#403F3F]">
           Login With
         </h1>
-        <button className="btn btn-outline w-full mb-4 capitalize text-blue-600">
+        <button
+          onClick={handleGoogleSignIn}
+          className="btn btn-outline w-full mb-4 capitalize text-blue-600"
+        >
           <FaGoogle></FaGoogle>
           <span>Login With Google</span>
         </button>

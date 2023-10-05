@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthContext";
 
 const BreakingNews = () => {
-  const [allNews, setAllNews] = useState([]);
-
-  useEffect(() => {
-    fetch("/news.json")
-      .then((res) => res.json())
-      .then((data) => setAllNews(data));
-  }, []);
+  const { allNews } = useContext(AuthContext);
 
   return (
     <div className="p-4 flex bg-[#F3F3F3]">

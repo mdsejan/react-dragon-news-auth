@@ -1,24 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import TrendingNewsCard from "./TrendingNewsCard";
+import { AuthContext } from "../../../providers/AuthContext";
 
 const LeftSideNav = () => {
-  const [categories, setCategories] = useState([]);
-  const [trendNews, setTrendNews] = useState([]);
+  const { allNews, categories } = useContext(AuthContext);
 
-  useEffect(() => {
-    fetch("/categories.json")
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
-  }, []);
-
-  useEffect(() => {
-    fetch("/news.json")
-      .then((res) => res.json())
-      .then((newsdata) => setTrendNews(newsdata));
-  }, []);
-
-  const trendNewsFilter = trendNews.filter(
+  const trendNewsFilter = allNews.filter(
     (news) => news.others_info.is_trending === true
   );
 
