@@ -2,9 +2,11 @@ import PropTypes from "prop-types";
 import { AiFillEye } from "react-icons/ai";
 import { FaRegBookmark, FaShareNodes } from "react-icons/fa6";
 import reviews from "../../assets/revviews.png";
+import { Link } from "react-router-dom";
 
 const HomeNewsCard = ({ news }) => {
-  const { title, image_url, details, rating, total_view, author } = news || {};
+  const { _id, title, image_url, details, rating, total_view, author } =
+    news || {};
   return (
     <div className="border mt-6 rounded-md">
       <div className=" flex justify-between items-center p-4 min-h-[5rem] bg-[#F3F3F3]">
@@ -35,9 +37,13 @@ const HomeNewsCard = ({ news }) => {
           {details.substring(0, 250)} .....
         </p>
 
-        <button className="font-bold text-[#FE8B4F] cursor-pointer mt-5 ">
+        <Link
+          to={`/news/${_id}`}
+          className="font-bold text-[#FE8B4F] cursor-pointer mt-5 "
+        >
           Read More
-        </button>
+        </Link>
+
         <div className="divider my-5"></div>
 
         <div className="flex justify-between items-center">
